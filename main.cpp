@@ -34,6 +34,39 @@ void Test()
 
 }
 
+//def offlineSign(privkey, to, amount, gas, price, nonce)
+void SendEth()
+{
+    Py_Initialize();
+    PyObject* pEthWeb3 = PyImport_ImportModule("ethwalletweb3");
+    PyObject* pFunOfflineSign = PyObject_GetAttrString(pEthWeb3, "offlineSign");
+    std::string privkey = "0x64d35332a1a14276f6d9aa15e193ba3a7e0f01dc5c22f3099ace61313305f7c8";
+    std::string to = "0x8f1a02deec329a653524c5c39f8bfffe55abe6c6";
+    double amount = 0.001;
+    double gas =   0.000000007;
+    double price = 0.000000004;
+    int nonce = 0;
+    PyObject* pArgs = PyTuple_New(6);
+    PyTuple_SetItem(pArgs, 0, Py_BuildValue("s", privkey.c_str()));
+    PyTuple_SetItem(pArgs, 1, Py_BuildValue("s", to.c_str()));
+    PyTuple_SetItem(pArgs, 2, Py_BuildValue("f", amount));
+    PyTuple_SetItem(pArgs, 3, Py_BuildValue("f", gas));
+    PyTuple_SetItem(pArgs, 4, Py_BuildValue("f", price));
+    PyTuple_SetItem(pArgs, 5, Py_BuildValue("i", nonce));
+std::cout << "call function begin" << std::endl;
+    PyObject* pRet = PyEval_CallObject(pFunOfflineSign, pArgs);
+std::cout << "call function end" << std::endl;
+   // char data[256] = {0} ;
+    //PyArg_Parse(pRet, "s" , &data);
+    //std::string ret = data;
+   // std::cout << ret << std::endl;
+
+
+
+
+}
+
+
 void addBook(QSqlQuery &q, const QString &title, int year, const QVariant &authorId,
              const QVariant &genreId, int rating)
 {
@@ -116,8 +149,10 @@ QSqlError InitDB()
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    Test();
-    InitDB();
+  //  Test();
+
+    SendEth();
+   // InitDB();
 
     MainWindow w;
     w.show();
