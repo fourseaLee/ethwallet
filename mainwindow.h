@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "coinview.h"
+#include "configdialog.h"
 
 namespace Ui {
 class MainWindow;
@@ -22,9 +23,12 @@ private slots:
 
     void on_actioneth_triggered();
 
+    void on_actiongenerate_triggered();
+
 private:
     Ui::MainWindow *ui;
     coinview view_table_;
+    ConfigDialog conf_dlg_;
 };
 
 #endif // MAINWINDOW_H

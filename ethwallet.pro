@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui sql
+QT       += core gui sql network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -26,17 +26,33 @@ CONFIG += c++11
 
 SOURCES += \
         coinview.cpp \
+        configdialog.cpp \
         main.cpp \
         mainwindow.cpp \
+        rpc/error.cpp \
+        rpc/httphelper.cpp \
+        rpc/peer.cpp \
+        rpc/qt-json/json.cpp \
+        rpc/responsehandler.cpp \
+        rpc/tcphelper.cpp \
         walletdb.cpp
 
 HEADERS += \
         coinview.h \
+        configdialog.h \
+        json.hpp \
         mainwindow.h \
+        rpc/error.h \
+        rpc/httphelper.h \
+        rpc/peer.h \
+        rpc/qt-json/json.h \
+        rpc/responsehandler.h \
+        rpc/tcphelper.h \
         walletdb.h
 
 FORMS += \
         coinview.ui \
+        configdialog.ui \
         mainwindow.ui
 
 
@@ -45,10 +61,9 @@ DISTFILES += \
 
 
 
-win32: LIBS += -L'C:/Program Files/Python36/libs/' -lpython36
+win32: LIBS += -L$$PWD/extern/libs/ -lpython37
 
-INCLUDEPATH += 'C:/Program Files/Python36/include'
-DEPENDPATH += 'C:/Program Files/Python36/include'
+INCLUDEPATH += $$PWD/extern/include
+DEPENDPATH += $$PWD/extern/include
 
-win32:!win32-g++: PRE_TARGETDEPS += 'C:/Program Files/Python36/libs/python36.lib'
-else:win32-g++: PRE_TARGETDEPS += 'C:/Program Files/Python36/libs/libpython36.a'
+

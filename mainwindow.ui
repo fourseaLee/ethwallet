@@ -24,11 +24,11 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tabeth">
      <attribute name="title">
-      <string>Tab 1</string>
+      <string>ETH</string>
      </attribute>
      <widget class="QPushButton" name="btn_eth_submit">
       <property name="geometry">
@@ -174,7 +174,7 @@
      <x>0</x>
      <y>0</y>
      <width>584</width>
-     <height>23</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menufile">
@@ -193,6 +193,7 @@
     <property name="title">
      <string>config</string>
     </property>
+    <addaction name="actiongenerate"/>
    </widget>
    <addaction name="menufile"/>
    <addaction name="menuview"/>
@@ -215,6 +216,11 @@
   <action name="actioneth">
    <property name="text">
     <string>eth</string>
+   </property>
+  </action>
+  <action name="actiongenerate">
+   <property name="text">
+    <string>generate</string>
    </property>
   </action>
  </widget>
