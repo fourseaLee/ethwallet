@@ -61,9 +61,25 @@ std::cout << "call function end" << std::endl;
     //std::string ret = data;
    // std::cout << ret << std::endl;
 
+    Py_Finalize();
 
+}
 
+void getBalance()
+{
+    Py_Initialize();
+    PyObject* pEthWeb3 = PyImport_ImportModule("ethwalletweb3");
+    PyObject* pFunOfflineSign = PyObject_GetAttrString(pEthWeb3, "getBalance");
+    std::string privkey = "0x64d35332a1a14276f6d9aa15e193ba3a7e0f01dc5c22f3099ace61313305f7c8";
+    std::string to = "0x8f1a02deec329a653524c5c39f8bfffe55abe6c6";
 
+    PyObject* pArgs = PyTuple_New(1);
+    PyTuple_SetItem(pArgs, 0, Py_BuildValue("s", privkey.c_str()));
+std::cout << "call function begin" << std::endl;
+    PyObject* pRet = PyEval_CallObject(pFunOfflineSign, pArgs);
+std::cout << "call function end" << std::endl;
+
+    Py_Finalize();
 }
 
 
@@ -149,9 +165,9 @@ QSqlError InitDB()
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-  //  Test();
+    //Test();
 
-    SendEth();
+   // getBalance();
    // InitDB();
 
     MainWindow w;

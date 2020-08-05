@@ -25,30 +25,30 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+        coinview.cpp \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+        walletdb.cpp
 
 HEADERS += \
-        mainwindow.h
+        coinview.h \
+        mainwindow.h \
+        walletdb.h
 
 FORMS += \
+        coinview.ui \
         mainwindow.ui
 
-# Default rules for deployment.
-qnx: target.path = /tmp/$${TARGET}/bin
-else: unix:!android: target.path = /opt/$${TARGET}/bin
-!isEmpty(target.path): INSTALLS += target
 
-win32:CONFIG(release, debug|release): LIBS += -L'C:/Program Files/Python36/libs/' -lpython36
-else:win32:CONFIG(debug, debug|release): LIBS += -L'C:/Program Files/Python36/libs/' -lpython36
+DISTFILES += \
+    ethwalletweb3.py
+
+
+
+win32: LIBS += -L'C:/Program Files/Python36/libs/' -lpython36
 
 INCLUDEPATH += 'C:/Program Files/Python36/include'
 DEPENDPATH += 'C:/Program Files/Python36/include'
 
-win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += 'C:/Program Files/Python36/libs/libpython36.a'
-else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += 'C:/Program Files/Python36/libs/libpython36.a'
-else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += 'C:/Program Files/Python36/libs/python36.lib'
-else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += 'C:/Program Files/Python36/libs/python36.lib'
-
-DISTFILES += \
-    ethwalletweb3.py
+win32:!win32-g++: PRE_TARGETDEPS += 'C:/Program Files/Python36/libs/python36.lib'
+else:win32-g++: PRE_TARGETDEPS += 'C:/Program Files/Python36/libs/libpython36.a'
